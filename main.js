@@ -36,14 +36,22 @@ function sortByMonth($a,$b)
     return ($a.getMonth() < $b.getMonth()) ? -1 : 1;
 }
 
+function sortByTime($a,$b)                           
+{
+    if ($a.getTime() == $b.getTime()){
+        return 0;
+    }
+    return ($a.getTime() < $b.getTime()) ? -1 : 1;
+}
+
 $date.sort(sortByDay);
 document.write("<br>Min day: "+$date[0].toDateString()+"<br>");
 $date.sort(sortByMonth);
-document.write("Max Month: "+$date[4].getMonth()+"<br>");
+document.write("Max Month: "+($date[4].getMonth()+1)+"<br>");
 
-$date.sort(sortByDate);
+$date.sort(sortByTime);
 var $selected = $date.pop();
-document.write("$selected: "+$selected.getDate()+"."+$selected.getMonth()+
+document.write("$selected: "+$selected.getDate()+"."+($selected.getMonth()+1)+
     "."+$selected.getFullYear()+" "+$selected.getHours()+":"+$selected.getMinutes()+":"+
       $selected.getSeconds()+"<br>");
       
